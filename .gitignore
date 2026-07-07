@@ -1,0 +1,50 @@
+# Configuration (contains credentials)
+conf/config.ini
+conf/mailgun.ini
+conf/aibuilder.ini
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database files
+database/*.db
+database/*.sqlite
+
+# Cache
+cache/
+*.cache
+
+# Logs
+log/*.log
+
+# Uploads
+uploads/
+
+# Workbench project workspaces (cloned repos)
+projects/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code workspace files (auto-generated for each workspace)
+.claude/
+.mcp.json
+.playwright-mcp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Composer
+vendor/
+composer.lock
+
+# Node.js
+node_modules/
+package-lock.json
+.mcp_token
+.mcp_url
