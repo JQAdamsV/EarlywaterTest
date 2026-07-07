@@ -1,10 +1,22 @@
+<?php
+/**
+ * Headwaters Union — standalone landing page.
+ *
+ * Rendered without the Tiknix header/footer layout (see Index::headwaters()).
+ * Hero centers the Headwaters Union logo prominently; the color scheme is
+ * pulled straight from the logo (deep forest green + muted sage). A simple
+ * Name / Email contact form posts to Index::doheadwaters(), which saves the
+ * visitor as a `lead` (viewable at /lead/admin) and returns here in a
+ * thank-you state.
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($title ?? 'Headwaters Union') ?></title>
-    <meta name="description" content="Headwaters Union — join the community. Sign up to be the first to know when we launch.">
+    <meta name="description" content="Headwaters Union — get in touch. Leave your name and email and we'll be in touch.">
     <meta name="theme-color" content="#1f4034">
     <style>
         :root {
@@ -30,25 +42,25 @@
                 var(--cream);
             color: var(--ink);
             text-align: center;
-            padding: 2rem 1.5rem;
+            padding: 3rem 1.5rem;
             -webkit-font-smoothing: antialiased;
         }
-        .wrap { width: 100%; max-width: 560px; }
+        .wrap { width: 100%; max-width: 620px; }
 
         /* ---------- Hero: prominent centered logo ---------- */
         .logo-card {
             display: inline-block;
             background: #fff;
-            padding: 2rem 2.25rem;
-            border-radius: 24px;
-            box-shadow: 0 24px 60px -22px rgba(22,48,42,0.35);
+            padding: 2.5rem 2.75rem;
+            border-radius: 28px;
+            box-shadow: 0 30px 70px -24px rgba(22,48,42,0.38);
             border: 1px solid var(--line);
-            margin-bottom: 2.25rem;
+            margin-bottom: 2.5rem;
         }
         .logo-card img {
             display: block;
-            width: 300px;
-            max-width: 70vw;
+            width: 360px;
+            max-width: 72vw;
             height: auto;
         }
 
@@ -64,8 +76,8 @@
             font-size: clamp(1rem, 3vw, 1.2rem);
             line-height: 1.65;
             color: #4c5f57;
-            max-width: 44ch;
-            margin: 0 auto 2rem;
+            max-width: 46ch;
+            margin: 0 auto 2.25rem;
         }
 
         /* ---------- Contact form ---------- */
@@ -153,12 +165,12 @@
         .thank-you strong { color: var(--forest); }
 
         footer {
-            margin-top: 2rem;
+            margin-top: 2.25rem;
             font-size: 0.82rem;
             color: var(--sage);
         }
         @media (max-width: 480px) {
-            .logo-card { padding: 1.5rem 1.5rem; border-radius: 20px; }
+            .logo-card { padding: 1.75rem 1.75rem; border-radius: 22px; }
         }
     </style>
 </head>
@@ -169,17 +181,21 @@
             <img src="/img/headwaters-logo.jpg" alt="Headwaters Union">
         </div>
 
-        <h1>Something great is on the way.</h1>
-        <p class="lede">We're putting the finishing touches on Headwaters Union. Leave your details and we'll let you know the moment we launch.</p>
+        <h1>Headwaters Union</h1>
+        <p class="lede">Leave your name and email and we'll be in touch.</p>
+
+        <?php if (!empty($error)): ?>
+            <div class="flash-error"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
 
         <?php if (!empty($subscribed)): ?>
             <div class="thank-you">
-                🎣 <strong>Thanks for signing up!</strong> We'll be in touch soon.
+                🎣 <strong>Thanks for reaching out!</strong> We'll be in touch soon.
             </div>
         <?php else: ?>
             <div class="form-card">
-                <h2>Get notified when we launch</h2>
-                <form method="post" action="/index/dolead">
+                <h2>Get in touch</h2>
+                <form method="post" action="/index/doheadwaters">
                     <?= csrf_field() ?>
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your name" required maxlength="150">
